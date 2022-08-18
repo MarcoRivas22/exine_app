@@ -5,7 +5,7 @@
     <side-bar
       :background-color="sidebarBackground"
       short-title="GL"
-      title="IoTicos GL"
+      title="Exine"
     >
       <template slot="links">
         <sidebar-item
