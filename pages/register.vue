@@ -3,8 +3,8 @@
     <div class="col-lg-4 col-md-6 ml-auto mr-auto">
       <card class="card-login card-white">
         <template slot="header">
-          <img src="img//LUXE FARMS.png" alt="" />
-          <h1 class="card-title">Luxe Farms</h1>
+          <img src="img//card-primary.png" alt="" />
+          <h1 class="card-title">IoT GL</h1>
         </template>
 
         <div>
@@ -64,63 +64,69 @@
 </template>
 <script>
 export default {
-  middleware: ["notAuthenticated"],
+  middleware: 'notAuthenticated',
   layout: "auth",
   data() {
     return {
       user: {
         name: "",
         email: "",
-        password: "",
-      },
+        password: ""
+      }
     };
   },
   methods: {
     register() {
+
       this.$axios
         .post("/register", this.user)
-        .then((res) => {
+        .then(res => {
           //success! - Usuario creado.
           if (res.data.status == "success") {
             this.$notify({
               type: "success",
               icon: "tim-icons icon-check-2",
-              message: "¡Exito! Usuario creado.",
+              message: "Success! Now you can login..."
             });
 
             this.user.name = "";
-            this.user.email = "";
             this.user.password = "";
+            this.user.email = "";
 
             return;
           }
+
         })
-        .catch((e) => {
+        .catch(e => {
           console.log(e.response.data);
 
-          if (
-            e.response.data.error ==
-            "User validation failed: email: This email is already taken"
-          ) {
+          if (e.response.data.error.errors.email.kind == "unique") {
             this.$notify({
               type: "danger",
               icon: "tim-icons icon-alert-circle-exc",
-              message: "Usuario ya registrado",
+              message: "User already exists :("
             });
 
             return;
+
           } else {
+
             this.$notify({
               type: "danger",
               icon: "tim-icons icon-alert-circle-exc",
-              message: "Error creating user...",
+              message: "Error creating user..."
             });
 
             return;
           }
+
+
+
         });
-    },
-  },
+
+
+    }
+  }
 };
 </script>
 <style>

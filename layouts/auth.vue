@@ -4,7 +4,7 @@
 
     <router-view name="header"></router-view>
 
-    <div :class="{ content: true }" style="margin-top: 100px">
+    <div :class="{ content: true }" style="margin-top: 100px;">
       <zoom-center-transition :duration="200" mode="out-in">
         <!-- your content here -->
         <nuxt />
@@ -37,11 +37,11 @@ import { SlideYDownTransition, ZoomCenterTransition } from "vue2-transitions";
 export default {
   name: "auth",
   components: {
-    ZoomCenterTransition,
+    ZoomCenterTransition
   },
   data() {
     return {
-      sidebarBackground: "primary", //vue|blue|orange|green|red|primary
+      sidebarBackground: "primary" //vue|blue|orange|green|red|primary
     };
   },
 
@@ -64,11 +64,11 @@ export default {
       } else {
         docClasses.add("perfect-scrollbar-off");
       }
-    },
+    }
   },
   mounted() {
     this.initScrollbar();
-  },
+  }
 };
 </script>
 

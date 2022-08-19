@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
-const checkAuth = require("../middlewares/authentication.js");
+const { checkAuth } = require("../middlewares/authentication.js");
 
 //models import
 import User from "../models/user.js";
@@ -27,7 +27,7 @@ router.post("/login", async (req, res) => {
     if (!user) {
       const response = {
         status: "error",
-        error: "Invalid Credentials",
+        error: "Invalid Credentials"
       };
       return res.status(401).json(response);
     }
@@ -37,20 +37,20 @@ router.post("/login", async (req, res) => {
       user.set("password", undefined, { strict: false });
 
       const token = jwt.sign({ userData: user }, "securePasswordHere", {
-        expiresIn: 60 * 60 * 24 * 30,
-      });
+        expiresIn: 60 * 60 * 24 * 30
+      }); 
 
       const response = {
         status: "success",
         token: token,
-        userData: user,
+        userData: user
       };
 
       return res.json(response);
     } else {
       const response = {
         status: "error",
-        error: "Invalid Credentials",
+        error: "Invalid Credentials"
       };
       return res.status(401).json(response);
     }
@@ -70,13 +70,14 @@ router.post("/register", async (req, res) => {
     const newUser = {
       name: name,
       email: email,
-      password: encryptedPassword,
+      password: encryptedPassword
     };
 
     var user = await User.create(newUser);
 
+
     const response = {
-      status: "success",
+      status: "success"
     };
 
     res.status(200).json(response);
@@ -86,7 +87,7 @@ router.post("/register", async (req, res) => {
 
     const response = {
       status: "error",
-      error: error,
+      error: error
     };
 
     console.log(response);
@@ -105,7 +106,7 @@ router.post("/getmqttcredentials", checkAuth, async (req, res) => {
     const response = {
       status: "success",
       username: credentials.username,
-      password: credentials.password,
+      password: credentials.password
     };
 
     res.json(response);
@@ -119,7 +120,7 @@ router.post("/getmqttcredentials", checkAuth, async (req, res) => {
     console.log(error);
 
     const response = {
-      status: "error",
+      status: "error"
     };
 
     return res.status(500).json(response);
@@ -140,7 +141,7 @@ router.post(
       const response = {
         status: "success",
         username: credentials.username,
-        password: credentials.password,
+        password: credentials.password
       };
 
       console.log(response);
@@ -173,14 +174,14 @@ async function getWebUserMqttCredentials(userId) {
         subscribe: [userId + "/#"],
         type: "user",
         time: Date.now(),
-        updatedTime: Date.now(),
+        updatedTime: Date.now()
       };
 
       const result = await EmqxAuthRule.create(newRule);
 
       const toReturn = {
         username: result.username,
-        password: result.password,
+        password: result.password
       };
 
       return toReturn;
@@ -195,8 +196,8 @@ async function getWebUserMqttCredentials(userId) {
         $set: {
           username: newUserName,
           password: newPassword,
-          updatedTime: Date.now(),
-        },
+          updatedTime: Date.now()
+        }
       }
     );
 
@@ -206,7 +207,7 @@ async function getWebUserMqttCredentials(userId) {
     if (result.n == 1 && result.ok == 1) {
       return {
         username: newUserName,
-        password: newPassword,
+        password: newPassword
       };
     } else {
       return false;
@@ -224,7 +225,7 @@ async function getWebUserMqttCredentialsForReconnection(userId) {
     if (rule.length == 1) {
       const toReturn = {
         username: rule[0].username,
-        password: rule[0].password,
+        password: rule[0].password
       };
       return toReturn;
     }

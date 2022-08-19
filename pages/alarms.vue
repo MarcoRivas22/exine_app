@@ -17,7 +17,7 @@
                 class="select-success"
                 placeholder="Variable"
                 v-model="selectedWidgetIndex"
-                style="margin-top: 25px"
+                style="margin-top: 25px;"
               >
                 <el-option
                   v-for="(widget, index) in $store.state.selectedDevice.template
@@ -36,7 +36,7 @@
                 class="select-warning"
                 placeholder="Condition"
                 v-model="newRule.condition"
-                style="margin-top: 25px"
+                style="margin-top: 25px;"
               >
                 <el-option class="text-dark" value="=" label="="></el-option>
                 <el-option class="text-dark" value=">" label=">"></el-option>
@@ -81,7 +81,9 @@
             </div>
           </div>
         </card>
-        <card v-else> You need to select a device to create an Alarm </card>
+        <card v-else>
+          You need to select a device to create an Alarm
+        </card>
       </div>
     </div>
 
@@ -124,12 +126,7 @@
 
             <el-table-column prop="counter" label="Matches"></el-table-column>
 
-            <el-table-column
-              min-width="110"
-              header-align="right"
-              align="right"
-              label="Actions"
-            >
+            <el-table-column min-width="110" header-align="right" align="right" label="Actions">
               <div
                 slot-scope="{ row, $index }"
                 class="text-right table-actions"
@@ -142,11 +139,11 @@
                     size="sm"
                     class="btn-link"
                   >
-                    <i class="tim-icons icon-simple-remove"></i>
+                    <i class="tim-icons icon-simple-remove "></i>
                   </base-button>
                 </el-tooltip>
 
-                <el-tooltip content="Rule Status" style="margin-left: 20px">
+                <el-tooltip content="Rule Status" style="margin-left: 20px;">
                   <i
                     class="fas fa-exclamation-triangle"
                     :class="{ 'text-warning': row.status }"
@@ -157,7 +154,7 @@
                       cambio uso el value, al accionar el switch no cambiará el objeto, pero podré cambiar el valor en la función -->
                 <el-tooltip
                   content="Change Rule Status"
-                  style="margin-left: 5px"
+                  style="margin-left: 5px;"
                 >
                   <base-switch
                     @click="updateStatusRule(row)"
@@ -165,7 +162,7 @@
                     type="primary"
                     on-text="ON"
                     off-text="OFF"
-                    style="margin-top: 10px"
+                    style="margin-top: 10px;"
                   ></base-switch>
                 </el-tooltip>
               </div>
@@ -189,7 +186,7 @@ export default {
     [Option.name]: Option,
     [Select.name]: Select,
     [Table.name]: Table,
-    [TableColumn.name]: TableColumn,
+    [TableColumn.name]: TableColumn
   },
   data() {
     return {
@@ -203,39 +200,42 @@ export default {
         variable: null,
         value: null,
         condition: null,
-        triggerTime: null,
-      },
+        triggerTime: null
+      }
     };
   },
   methods: {
+
+
     deleteDevice(rule) {
+
       const axiosHeaders = {
         headers: {
-          token: this.$store.state.auth.token,
+          token: this.$store.state.auth.token
         },
         params: {
-          emqxRuleId: rule.emqxRuleId,
-        },
+          emqxRuleId: rule.emqxRuleId
+        }
       };
 
       this.$axios
         .delete("/alarm-rule", axiosHeaders)
-        .then((res) => {
-          if (res.data.status == "success") {
+        .then(res => {
+           if (res.data.status == "success") {
             this.$notify({
               type: "success",
               icon: "tim-icons icon-check-2",
-              message: "Success! Alarm Rule was deleted",
+              message: "Success! Alarm Rule was deleted"
             });
             this.$store.dispatch("getDevices");
             return;
           }
         })
-        .catch((e) => {
+        .catch(e => {
           this.$notify({
             type: "danger",
             icon: "tim-icons icon-alert-circle-exc",
-            message: "Error",
+            message: "Error"
           });
           console.log(e);
           return;
@@ -245,8 +245,8 @@ export default {
     updateStatusRule(rule) {
       const axiosHeaders = {
         headers: {
-          token: this.$store.state.auth.token,
-        },
+          token: this.$store.state.auth.token
+        }
       };
 
       var ruleCopy = JSON.parse(JSON.stringify(rule));
@@ -257,12 +257,12 @@ export default {
 
       this.$axios
         .put("/alarm-rule", toSend, axiosHeaders)
-        .then((res) => {
+        .then(res => {
           if (res.data.status == "success") {
             this.$notify({
               type: "success",
               icon: "tim-icons icon-check-2",
-              message: "Success! Alarm Rule was updated",
+              message: "Success! Alarm Rule was updated"
             });
 
             this.$store.dispatch("getDevices");
@@ -270,11 +270,11 @@ export default {
             return;
           }
         })
-        .catch((e) => {
+        .catch(e => {
           this.$notify({
             type: "danger",
             icon: "tim-icons icon-alert-circle-exc",
-            message: "Error",
+            message: "Error"
           });
           console.log(e);
           return;
@@ -286,7 +286,7 @@ export default {
         this.$notify({
           type: "warning",
           icon: "tim-icons icon-alert-circle-exc",
-          message: " Variable must be selected",
+          message: " Variable must be selected"
         });
         return;
       }
@@ -295,7 +295,7 @@ export default {
         this.$notify({
           type: "warning",
           icon: "tim-icons icon-alert-circle-exc",
-          message: " Condition must be selected",
+          message: " Condition must be selected"
         });
         return;
       }
@@ -304,7 +304,7 @@ export default {
         this.$notify({
           type: "warning",
           icon: "tim-icons icon-alert-circle-exc",
-          message: " Value is empty",
+          message: " Value is empty"
         });
         return;
       }
@@ -313,35 +313,36 @@ export default {
         this.$notify({
           type: "warning",
           icon: "tim-icons icon-alert-circle-exc",
-          message: " Trigger Time is empty",
+          message: " Trigger Time is empty"
         });
         return;
       }
 
+      
       this.newRule.dId = this.$store.state.selectedDevice.dId;
       this.newRule.deviceName = this.$store.state.selectedDevice.name;
-      this.newRule.variableFullName =
-        this.$store.state.selectedDevice.template.widgets[
-          this.selectedWidgetIndex
-        ].variableFullName;
-      this.newRule.variable =
-        this.$store.state.selectedDevice.template.widgets[
-          this.selectedWidgetIndex
-        ].variable;
+      this.newRule.variableFullName = this.$store.state.selectedDevice.template.widgets[
+        this.selectedWidgetIndex
+      ].variableFullName;
+      this.newRule.variable = this.$store.state.selectedDevice.template.widgets[
+        this.selectedWidgetIndex
+      ].variable;
+
+      
 
       const axiosHeaders = {
         headers: {
-          token: this.$store.state.auth.token,
-        },
+          token: this.$store.state.auth.token
+        }
       };
 
       var toSend = {
-        newRule: this.newRule,
+        newRule: this.newRule
       };
 
       this.$axios
         .post("/alarm-rule", toSend, axiosHeaders)
-        .then((res) => {
+        .then(res => {
           if (res.data.status == "success") {
             this.newRule.variable = null;
             this.newRule.condition = null;
@@ -352,7 +353,7 @@ export default {
             this.$notify({
               type: "success",
               icon: "tim-icons icon-check-2",
-              message: "Success! Alarm Rule was added",
+              message: "Success! Alarm Rule was added"
             });
 
             this.$store.dispatch("getDevices");
@@ -360,16 +361,16 @@ export default {
             return;
           }
         })
-        .catch((e) => {
+        .catch(e => {
           this.$notify({
             type: "danger",
             icon: "tim-icons icon-alert-circle-exc",
-            message: "Error",
+            message: "Error"
           });
           console.log(e);
           return;
         });
-    },
-  },
+    }
+  }
 };
 </script>

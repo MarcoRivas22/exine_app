@@ -13,7 +13,7 @@ pre {
 }
 
 .number {
-  color: #fd5d93;
+  color: rgb(53, 88, 247);
 }
 
 .boolean {
@@ -25,7 +25,7 @@ pre {
 }
 
 .key {
-  color: rgb(53, 88, 247);
+  color: #fd5d93;
   font-weight: bold;
 }
 </style>
@@ -36,26 +36,27 @@ export default {
   props: ["value"],
   data() {
     return {
-      vscodeTunedComments: {
-        "editor.tokenColorCustomizations": {
-          textMateRules: [
-            {
-              scope: "comment.line",
-              settings: {
-                fontStyle: "bold italic",
-                foreground: "#2bff63cd",
-              },
-            },
-            {
-              scope: "comment.block",
-              settings: {
-                fontStyle: "bold",
-                foreground: "#fe27f7cd",
-              },
-            },
-          ],
-        },
-      },
+        vscodeTunedComments:{
+            "editor.tokenColorCustomizations": {
+
+"textMateRules": [
+    {
+        "scope": "comment.line",
+        "settings": {
+            "fontStyle": "bold italic",
+            "foreground":"#2bff63cd"
+        }
+    },
+    {
+        "scope": "comment.block",
+        "settings": {
+            "fontStyle": "bold",
+            "foreground":"#fe27f7cd" 
+        }
+    }
+]
+},
+        }
     };
   },
   methods: {
@@ -69,7 +70,7 @@ export default {
         .replace(/>/g, "&gt;");
       return json.replace(
         /("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g,
-        function (match) {
+        function(match) {
           var cls = "number";
           if (/^"/.test(match)) {
             if (/:$/.test(match)) {
@@ -85,7 +86,7 @@ export default {
           return '<span class="' + cls + '">' + match + "</span>";
         }
       );
-    },
-  },
+    }
+  }
 };
 </script>

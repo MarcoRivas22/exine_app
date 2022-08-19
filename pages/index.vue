@@ -1,14 +1,13 @@
 <template>
-  <h2>{{ $route.meta.title }}</h2>
+  <div class="row"><h3></h3></div>
 </template>
 
+
 <script>
-export default {
-  middleware: ["authenticated"],
-  mounted() {
-    $nuxt.$router.push({
-      path: "/dashboard",
-    });
-  },
-};
+    export default {
+        middleware: "authenticated",
+        mounted() {
+            $nuxt.$router.push("/dashboard");
+        }
+    }
 </script>

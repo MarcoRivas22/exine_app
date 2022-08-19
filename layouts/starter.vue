@@ -6,9 +6,7 @@
       short-title="CT"
       title="Creative Tim"
     >
-      <template 
-      slot="links">
-      <!-- slot-scope="props"  -->
+      <template slot-scope="props" slot="links">
         <sidebar-item
           :link="{
             name: $t('sidebar.dashboard'),
