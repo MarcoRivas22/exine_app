@@ -3,10 +3,7 @@
     <div class="sidebar-wrapper" ref="sidebarScrollArea">
       <div class="logo">
         <a href="" class="simple-text logo-mini">
-          <img
-            src="https://yt3.ggpht.com/ytc/AAUvwnjakiyR7urXlB0hxyXjpyXZI2k4eFlahDd5vfgDEQ=s900-c-k-c0x00ffffff-no-rj"
-            alt="app-logo"
-          />
+          <img src="img//exine.png" alt="app-logo" />
         </a>
         <a href="" class="simple-text logo-normal">
           {{ title }}
@@ -33,52 +30,52 @@ export default {
     title: {
       type: String,
       default: "Creative Tim",
-      description: "Sidebar title",
+      description: "Sidebar title"
     },
     shortTitle: {
       type: String,
       default: "CT",
-      description: "Sidebar short title",
+      description: "Sidebar short title"
     },
     logo: {
       type: String,
       default:
         "http://demos.creative-tim.com/nuxt-black-dashboard-pro/img/icon-nuxt.svg",
-      description: "Sidebar app logo",
+      description: "Sidebar app logo"
     },
     backgroundColor: {
       type: String,
       default: "vue",
-      validator: (value) => {
+      validator: value => {
         let acceptedValues = ["", "vue", "blue", "green", "primary"];
         return acceptedValues.indexOf(value) !== -1;
       },
       description:
-        "Sidebar background color (vue|blue|green|orange|red|primary)",
+        "Sidebar background color (vue|blue|green|orange|red|primary)"
     },
     sidebarLinks: {
       type: Array,
       default: () => [],
       description:
-        "List of sidebar links as an array if you don't want to use components for these.",
+        "List of sidebar links as an array if you don't want to use components for these."
     },
     autoClose: {
       type: Boolean,
       default: true,
       description:
-        "Whether sidebar should autoclose on mobile when clicking an item",
-    },
+        "Whether sidebar should autoclose on mobile when clicking an item"
+    }
   },
   provide() {
     return {
-      autoClose: this.autoClose,
+      autoClose: this.autoClose
     };
   },
   beforeDestroy() {
     if (this.$sidebar.showSidebar) {
       this.$sidebar.showSidebar = false;
     }
-  },
+  }
 };
 </script>
 <style>
