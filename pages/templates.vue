@@ -4,7 +4,7 @@
     <div class="row">
       <card>
         <div slot="header">
-          <h4 class="card-title">Widgets {{iotIndicatorConfig.column}}</h4>
+          <h4 class="card-title">Widgets</h4>
         </div>
 
         <div class="row">
@@ -415,7 +415,6 @@
 
             <!-- FORM INDICATOR TYPE -->
             <div v-if="widgetType == 'indicator'">
-
               <base-input
                 v-model="iotIndicatorConfig.variableFullName"
                 label="Var Name"
@@ -567,7 +566,7 @@
           </div>
         </div>
       </card>
-    </div> 
+    </div>
 
     <!-- DASHBOARD PREVIEW -->
     <div class="row">
@@ -606,7 +605,7 @@
     </div>
 
     <!-- SAVE TEMPLATE FORM-->
-    <div class="row" >
+    <div class="row">
       <card>
         <div slot="header">
           <h4 class="card-title">Save Template</h4>
@@ -703,8 +702,6 @@
         </div>
       </card>
     </div>
-
-
   </div>
 </template>
 
@@ -727,7 +724,6 @@ export default {
       widgetType: "",
       templateName: "",
       templateDescription: "",
-
 
       ncConfig: {
         userId: "sampleuserid",
@@ -764,7 +760,6 @@ export default {
         column: "col-6"
       },
 
-
       iotIndicatorConfig: {
         userId: "userid",
         selectedDevice: {
@@ -798,9 +793,7 @@ export default {
         widget: "button",
         class: "danger",
         message: "{'fanstatus': 'stop'}"
-      },
-
-
+      }
     };
   },
 
@@ -879,33 +872,31 @@ export default {
 
     //Delete Template
     async deleteTemplate(template) {
-
-      
       const axiosHeaders = {
         headers: {
           token: this.$store.state.auth.token
         },
-        params:{
-          templateId:template._id
+        params: {
+          templateId: template._id
         }
       };
 
       console.log(axiosHeaders);
 
       try {
-
         const res = await this.$axios.delete("/template", axiosHeaders);
 
-        console.log(res.data)
+        console.log(res.data);
 
         if (res.data.status == "fail" && res.data.error == "template in use") {
-
           this.$notify({
             type: "danger",
             icon: "tim-icons icon-alert-circle-exc",
-            message: template.name + " is in use. First remove the devices linked to the template!"
+            message:
+              template.name +
+              " is in use. First remove the devices linked to the template!"
           });
-          
+
           return;
         }
 
@@ -915,7 +906,7 @@ export default {
             icon: "tim-icons icon-check-2",
             message: template.name + " was deleted!"
           });
-          
+
           this.getTemplates();
         }
       } catch (error) {
@@ -950,7 +941,6 @@ export default {
         this.iotIndicatorConfig.variable = this.makeid(10);
         this.widgets.push(JSON.parse(JSON.stringify(this.iotIndicatorConfig)));
       }
-
     },
 
     //Delete Widget

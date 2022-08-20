@@ -3,8 +3,8 @@
     <div class="col-lg-4 col-md-6 ml-auto mr-auto">
       <card class="card-login card-white">
         <template slot="header">
-          <img src="img//card-primary.png" alt="" />
-          <h1 class="card-title">IoT GL</h1>
+          <img src="img//exine.png" alt="" />
+          <h1 class="card-title">Exine</h1>
         </template>
 
         <div>
@@ -64,7 +64,7 @@
 </template>
 <script>
 export default {
-  middleware: 'notAuthenticated',
+  middleware: "notAuthenticated",
   layout: "auth",
   data() {
     return {
@@ -77,7 +77,6 @@ export default {
   },
   methods: {
     register() {
-
       this.$axios
         .post("/register", this.user)
         .then(res => {
@@ -95,7 +94,6 @@ export default {
 
             return;
           }
-
         })
         .catch(e => {
           console.log(e.response.data);
@@ -108,9 +106,7 @@ export default {
             });
 
             return;
-
           } else {
-
             this.$notify({
               type: "danger",
               icon: "tim-icons icon-alert-circle-exc",
@@ -119,12 +115,7 @@ export default {
 
             return;
           }
-
-
-
         });
-
-
     }
   }
 };

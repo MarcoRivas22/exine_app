@@ -6,7 +6,7 @@
           <img src="img//exine.png" alt="app-logo" />
         </a>
         <a href="" class="simple-text logo-normal">
-          {{ title }}
+          Exine
         </a>
       </div>
       <slot></slot>
