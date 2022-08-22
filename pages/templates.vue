@@ -540,10 +540,10 @@
               v-if="widgetType == 'switch'"
               :config="iotSwitchConfig"
             ></Iotswitch>
-            <Iotbutton
+            <IotButton
               v-if="widgetType == 'button'"
               :config="configButton"
-            ></Iotbutton>
+            ></IotButton>
             <Iotindicator
               v-if="widgetType == 'indicator'"
               :config="iotIndicatorConfig"
@@ -592,10 +592,10 @@
           :config="widget"
         ></Iotswitch>
 
-        <Iotbutton
+        <IotButton
           v-if="widget.widget == 'button'"
           :config="widget"
-        ></Iotbutton>
+        ></IotButton>
 
         <Iotindicator
           v-if="widget.widget == 'indicator'"
