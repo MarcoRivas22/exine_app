@@ -47,7 +47,7 @@
     </side-bar>
 
     <!--Share plugin (for demo purposes). You can remove it if don't plan on using it-->
-    <sidebar-share :background-color.sync="sidebarBackground"> </sidebar-share>
+    <!-- <sidebar-share :background-color.sync="sidebarBackground"> </sidebar-share> -->
 
     <div class="main-panel" :data="sidebarBackground">
       <dashboard-navbar></dashboard-navbar>
@@ -193,9 +193,7 @@ export default {
           this.client.options.password = credentials.data.password;
         }
       } catch (error) {
-
         console.log(error);
-
 
         if (error.response.status == 401) {
           console.log("NO VALID TOKEN");
@@ -206,7 +204,6 @@ export default {
 
           window.location.href = "/login";
         }
-        
       }
     },
 
@@ -220,13 +217,11 @@ export default {
         this.$store.state.auth.userData._id + "/+/+/notif";
 
       const connectUrl =
-        process.env.mqtt_prefix + 
+        process.env.mqtt_prefix +
         this.options.host +
         ":" +
         this.options.port +
         this.options.endpoint;
-
-        
 
       try {
         this.client = mqtt.connect(connectUrl, this.options);
