@@ -80,7 +80,9 @@ export default {
           "/" +
           this.config.variable +
           "/actdata",
-        msg: this.value
+        msg: {
+          value: this.value
+        }
       };
 
       $nuxt.$emit("mqtt-sender", toSend);
