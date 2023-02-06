@@ -1,3 +1,3 @@
 # EXINE WEB APP
 
-Hola, aqui podrás encontrar el front end
+Front end de exine v1.0.1
