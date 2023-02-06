@@ -11,28 +11,26 @@ export default {
       {
         hid: "description",
         name: "description",
-        content: process.env.npm_package_description || ""
-      }
+        content: process.env.npm_package_description || "",
+      },
     ],
     link: [
       { rel: "icon", type: "image/x-icon", href: "/favicon.png" },
       {
         rel: "stylesheet",
-        href:
-          "https://fonts.googleapis.com/css?family=Poppins:200,300,400,600,700,800"
+        href: "https://fonts.googleapis.com/css?family=Poppins:200,300,400,600,700,800",
       },
       {
         rel: "stylesheet",
-        href:
-          "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.min.css"
-      }
+        href: "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.min.css",
+      },
     ],
     bodyAttrs: {
-      class: "" // Add `white-content` class here to enable "white" mode.
-    }
+      class: "", // Add `white-content` class here to enable "white" mode.
+    },
   },
   router: {
-    linkExactActiveClass: "active"
+    linkExactActiveClass: "active",
   },
   /*
    ** Customize the progress-bar color
@@ -44,14 +42,14 @@ export default {
   css: [
     "assets/css/demo.css",
     "assets/css/nucleo-icons.css",
-    "assets/sass/black-dashboard.scss"
+    "assets/sass/black-dashboard.scss",
   ],
   /*
    ** Plugins to load before mounting the App
    */
   plugins: [`~/plugins/dashboard-plugin.js`],
   //autoimport
-  components: true,
+  components: false,
   /*
    ** Nuxt.js dev-modules
    */
@@ -63,22 +61,22 @@ export default {
 
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)
   axios: {
-    baseURL: process.env.AXIOS_BASE_URL
+    baseURL: process.env.AXIOS_BASE_URL,
   },
   env: {
     mqtt_prefix: process.env.MQTT_PREFIX,
     mqtt_host: process.env.MQTT_HOST,
-    mqtt_port: process.env.MQTT_PORT
+    mqtt_port: process.env.MQTT_PORT,
   },
 
-  server: {
-    port: 3000, // default: 3000
-    host: "0.0.0.0" // default: localhost
-  },
+  // server: {
+  //   port: 3000, // default: 3000
+  //   host: "0.0.0.0", // default: localhost
+  // },
 
-  serverMiddleware: {
-    "/api": "~/api"
-  },
+  // serverMiddleware: {
+  //   "/api": "~/api",
+  // },
 
   /*
    ** Build configuration
@@ -95,10 +93,10 @@ export default {
           "component",
           {
             libraryName: "element-ui",
-            styleLibraryName: "theme-chalk"
-          }
-        ]
-      ]
-    }
-  }
+            styleLibraryName: "theme-chalk",
+          },
+        ],
+      ],
+    },
+  },
 };

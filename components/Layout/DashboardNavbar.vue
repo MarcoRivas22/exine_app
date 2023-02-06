@@ -57,8 +57,8 @@
           class="nav-link"
         >
           <a href="#" class="nav-item dropdown-item">
-            <b style="color:orangered">{{ unixToDate(notification.time) }}</b>
-            <div style="margin-left:50px">
+            <b style="color: orangered">{{ unixToDate(notification.time) }}</b>
+            <div style="margin-left: 50px">
               <b>Device: </b> {{ notification.deviceName }} <br />
               <b>Variable: </b> {{ notification.variableFullName }} <br />
               <b>Condition: </b> {{ notification.condition }} <br />
@@ -78,7 +78,7 @@
         menu-classes="dropdown-navbar"
       >
         <template slot="title">
-          <div class="photo"><img src="img/mike.jpg" /></div>
+          <div class="photo"><i class="fa fa-user" /></div>
           <b class="caret d-none d-lg-block d-xl-block"></b>
           <p @click="logOut()" class="d-lg-none">Log out</p>
         </template>
@@ -90,7 +90,9 @@
         </li>
         <div class="dropdown-divider"></div>
         <li class="nav-link">
-          <a href="#" @click="logOut()" class="nav-item dropdown-item">Log out</a>
+          <a href="#" @click="logOut()" class="nav-item dropdown-item"
+            >Log out</a
+          >
         </li>
       </base-dropdown>
     </ul>
@@ -107,7 +109,7 @@ export default {
     BaseNav,
     Modal,
     [Option.name]: Option,
-    [Select.name]: Select
+    [Select.name]: Select,
   },
   computed: {
     routeName() {
@@ -116,11 +118,11 @@ export default {
       if (parts == ",") {
         return "Dashboard";
       }
-      return parts.map(p => this.capitalizeFirstLetter(p)).join(" ");
+      return parts.map((p) => this.capitalizeFirstLetter(p)).join(" ");
     },
     isRTL() {
       return this.$rtl.isRTL;
-    }
+    },
   },
   data() {
     return {
@@ -128,7 +130,7 @@ export default {
       showMenu: false,
       searchModalVisible: false,
       searchQuery: "",
-      selectedDevice: null
+      selectedDevice: null,
     };
   },
   mounted() {
@@ -145,22 +147,22 @@ export default {
     notificationReaded(notifId) {
       const axiosHeaders = {
         headers: {
-          token: this.$store.state.auth.token
-        }
+          token: this.$store.state.auth.token,
+        },
       };
 
       var auto;
 
       const toSend = {
-        notifId: notifId
+        notifId: notifId,
       };
 
       this.$axios
         .put("/notifications", toSend, axiosHeaders)
-        .then(res => {
+        .then((res) => {
           this.$store.dispatch("getNotifications");
         })
-        .catch(e => {
+        .catch((e) => {
           console.log(e);
           return;
         });
@@ -180,20 +182,20 @@ export default {
 
       const axiosHeaders = {
         headers: {
-          token: this.$store.state.auth.token
-        }
+          token: this.$store.state.auth.token,
+        },
       };
 
       const toSend = {
-        dId: device.dId
+        dId: device.dId,
       };
 
       this.$axios
         .put("/device", toSend, axiosHeaders)
-        .then(res => {
+        .then((res) => {
           this.$store.dispatch("getDevices");
         })
-        .catch(e => {
+        .catch((e) => {
           console.log(e);
           return;
         });
@@ -239,8 +241,8 @@ export default {
     },
     toggleMenu() {
       this.showMenu = !this.showMenu;
-    }
-  }
+    },
+  },
 };
 </script>
 <style scoped>

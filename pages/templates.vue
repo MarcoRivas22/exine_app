@@ -15,7 +15,7 @@
               v-model="widgetType"
               class="select-success"
               placeholder="Select Widget"
-              style="width: 100%;"
+              style="width: 100%"
             >
               <el-option
                 class="text-dark"
@@ -96,7 +96,7 @@
                 v-model="ncConfig.class"
                 class="select-success"
                 placeholder="Select Class"
-                style="width: 100%;"
+                style="width: 100%"
               >
                 <el-option
                   class="text-success"
@@ -126,7 +126,7 @@
                 v-model="ncConfig.column"
                 class="select-success"
                 placeholder="Select Column Width"
-                style="width: 100%;"
+                style="width: 100%"
               >
                 <el-option
                   class="text-dark"
@@ -204,7 +204,7 @@
                 v-model="iotSwitchConfig.class"
                 class="select-success"
                 placeholder="Select Class"
-                style="width: 100%;"
+                style="width: 100%"
               >
                 <el-option
                   class="text-success"
@@ -234,7 +234,7 @@
                 v-model="iotSwitchConfig.column"
                 class="select-success"
                 placeholder="Select Column Width"
-                style="width: 100%;"
+                style="width: 100%"
               >
                 <el-option
                   class="text-dark"
@@ -326,7 +326,7 @@
                 v-model="configButton.class"
                 class="select-success"
                 placeholder="Select Class"
-                style="width: 100%;"
+                style="width: 100%"
               >
                 <el-option
                   class="text-success"
@@ -356,7 +356,7 @@
                 v-model="configButton.column"
                 class="select-success"
                 placeholder="Select Column Width"
-                style="width: 100%;"
+                style="width: 100%"
               >
                 <el-option
                   class="text-dark"
@@ -442,7 +442,7 @@
                 v-model="iotIndicatorConfig.class"
                 class="select-success"
                 placeholder="Select Class"
-                style="width: 100%;"
+                style="width: 100%"
               >
                 <el-option
                   class="text-success"
@@ -472,7 +472,7 @@
                 v-model="iotIndicatorConfig.column"
                 class="select-success"
                 placeholder="Select Column Width"
-                style="width: 100%;"
+                style="width: 100%"
               >
                 <el-option
                   class="text-dark"
@@ -579,7 +579,7 @@
           aria-hidden="true"
           class="fa fa-trash text-warning pull-right"
           @click="deleteWidget(index)"
-          style="margin-bottom: 10px;"
+          style="margin-bottom: 10px"
         ></i>
 
         <Rtnumberchart
@@ -693,7 +693,7 @@
                     size="sm"
                     class="btn-link"
                   >
-                    <i class="tim-icons icon-simple-remove "></i>
+                    <i class="tim-icons icon-simple-remove"></i>
                   </base-button>
                 </el-tooltip>
               </div>
@@ -706,16 +706,18 @@
 </template>
 
 <script>
+import Rtnumberchart from "../components/Widgets/Rtnumberchart.vue";
 import { Table, TableColumn } from "element-ui";
 import { Select, Option } from "element-ui";
 
 export default {
   middleware: "authenticated",
   components: {
+    Rtnumberchart,
     [Table.name]: Table,
     [TableColumn.name]: TableColumn,
     [Option.name]: Option,
-    [Select.name]: Select
+    [Select.name]: Select,
   },
   data() {
     return {
@@ -729,7 +731,7 @@ export default {
         userId: "sampleuserid",
         selectedDevice: {
           name: "Home",
-          dId: "8888"
+          dId: "8888",
         },
         variableFullName: "temperature",
         variable: "varname",
@@ -742,14 +744,14 @@ export default {
         widget: "numberchart",
         icon: "fa-sun",
         chartTimeAgo: 60,
-        demo: true
+        demo: true,
       },
 
       iotSwitchConfig: {
         userId: "userid",
         selectedDevice: {
           name: "Home",
-          dId: "8888"
+          dId: "8888",
         },
         variableFullName: "Luz",
         variable: "varname",
@@ -757,14 +759,14 @@ export default {
         class: "danger",
         widget: "switch",
         icon: "fa-bath",
-        column: "col-6"
+        column: "col-6",
       },
 
       iotIndicatorConfig: {
         userId: "userid",
         selectedDevice: {
           name: "Home",
-          dId: "8888"
+          dId: "8888",
         },
         variableFullName: "temperature",
         variable: "varname",
@@ -773,7 +775,7 @@ export default {
         class: "success",
         widget: "indicator",
         icon: "fa-bath",
-        column: "col-6"
+        column: "col-6",
       },
 
       configButton: {
@@ -783,7 +785,7 @@ export default {
           dId: "8888",
           templateName: "Power Sensor",
           templateId: "984237562348756ldksjfh",
-          saverRule: false
+          saverRule: false,
         },
         variableFullName: "Pump",
         variable: "var1",
@@ -792,8 +794,8 @@ export default {
         column: "col-4",
         widget: "button",
         class: "danger",
-        message: "{'fanstatus': 'stop'}"
-      }
+        message: "{'fanstatus': 'stop'}",
+      },
     };
   },
 
@@ -806,8 +808,8 @@ export default {
     async getTemplates() {
       const axiosHeaders = {
         headers: {
-          token: this.$store.state.auth.token
-        }
+          token: this.$store.state.auth.token,
+        },
       };
 
       try {
@@ -821,7 +823,7 @@ export default {
         this.$notify({
           type: "danger",
           icon: "tim-icons icon-alert-circle-exc",
-          message: "Error getting templates..."
+          message: "Error getting templates...",
         });
         console.log(error);
         return;
@@ -832,8 +834,8 @@ export default {
     async saveTemplate() {
       const axiosHeaders = {
         headers: {
-          token: this.$store.state.auth.token
-        }
+          token: this.$store.state.auth.token,
+        },
       };
 
       console.log(axiosHeaders);
@@ -842,8 +844,8 @@ export default {
         template: {
           name: this.templateName,
           description: this.templateDescription,
-          widgets: this.widgets
-        }
+          widgets: this.widgets,
+        },
       };
 
       try {
@@ -853,7 +855,7 @@ export default {
           this.$notify({
             type: "success",
             icon: "tim-icons icon-alert-circle-exc",
-            message: "Template created!"
+            message: "Template created!",
           });
           this.getTemplates();
 
@@ -863,7 +865,7 @@ export default {
         this.$notify({
           type: "danger",
           icon: "tim-icons icon-alert-circle-exc",
-          message: "Error creating template..."
+          message: "Error creating template...",
         });
         console.log(error);
         return;
@@ -874,11 +876,11 @@ export default {
     async deleteTemplate(template) {
       const axiosHeaders = {
         headers: {
-          token: this.$store.state.auth.token
+          token: this.$store.state.auth.token,
         },
         params: {
-          templateId: template._id
-        }
+          templateId: template._id,
+        },
       };
 
       console.log(axiosHeaders);
@@ -894,7 +896,7 @@ export default {
             icon: "tim-icons icon-alert-circle-exc",
             message:
               template.name +
-              " is in use. First remove the devices linked to the template!"
+              " is in use. First remove the devices linked to the template!",
           });
 
           return;
@@ -904,7 +906,7 @@ export default {
           this.$notify({
             type: "success",
             icon: "tim-icons icon-check-2",
-            message: template.name + " was deleted!"
+            message: template.name + " was deleted!",
           });
 
           this.getTemplates();
@@ -913,7 +915,7 @@ export default {
         this.$notify({
           type: "danger",
           icon: "tim-icons icon-alert-circle-exc",
-          message: "Error getting templates..."
+          message: "Error getting templates...",
         });
         console.log(error);
         return;
@@ -959,7 +961,7 @@ export default {
         );
       }
       return result;
-    }
-  }
+    },
+  },
 };
 </script>

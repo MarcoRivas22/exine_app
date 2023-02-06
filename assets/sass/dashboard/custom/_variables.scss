@@ -39,7 +39,7 @@ $grays: map-merge(
     "600": $gray-600,
     "700": $gray-700,
     "800": $gray-800,
-    "900": $gray-900
+    "900": $gray-900,
   ),
   $grays
 );
@@ -89,7 +89,7 @@ $colors: map-merge(
     "gray": $gray-600,
     "light": $gray-400,
     "lighter": $gray-200,
-    "gray-dark": $gray-800
+    "gray-dark": $gray-800,
   ),
   $colors
 );
@@ -98,9 +98,9 @@ $default-color-opacity: rgba(182, 182, 182, 0.6) !default;
 $orange-color: #f96332 !default;
 
 $default: #344675 !default;
-$primary: #062852 !default;
+$primary: #cb6ce6 !default;
 $secondary: #f4f5f7 !default;
-$success: #00f2c3 !default;
+$success: #57ffdc !default;
 $info: #1d8cf8 !default;
 $warning: #f9a828 !default;
 $danger: #da0037 !default;
@@ -109,7 +109,7 @@ $vue: #42b883 !default;
 
 // gradient
 $default-states: #263148 !default;
-$primary-states: #063055 !default;
+$primary-states: #5a3066 !default;
 $success-states: #0098f0 !default;
 $info-states: #3358f4 !default;
 $warning-states: #f9a828 !default;
@@ -179,7 +179,7 @@ $theme-colors: map-merge(
     "white": $white,
     "neutral": $white,
     "dark": $dark,
-    "darker": $darker
+    "darker": $darker,
   ),
   $theme-colors
 );
@@ -198,7 +198,7 @@ $brand-colors: map-merge(
     "reddit": $reddit,
     "behance": $behance,
     "tumblr": $tumblr,
-    "linkedin": $linkedin
+    "linkedin": $linkedin,
   ),
   $brand-colors
 );
@@ -249,7 +249,7 @@ $section-colors: map-merge(
     "secondary": $secondary,
     "light": $gray-400,
     "dark": $dark,
-    "darker": $darker
+    "darker": $darker,
   ),
   $section-colors
 );
@@ -268,7 +268,7 @@ $grid-breakpoints: (
   sm: 576px,
   md: 768px,
   lg: 992px,
-  xl: 1200px
+  xl: 1200px,
 );
 
 @include _assert-ascending($grid-breakpoints, "$grid-breakpoints");
@@ -286,30 +286,30 @@ $spacers: map-merge(
   (
     0: 0,
     1: (
-      $spacer * 0.25
+      $spacer * 0.25,
     ),
     2: (
-      $spacer * 0.5
+      $spacer * 0.5,
     ),
     3: $spacer,
     4: (
-      $spacer * 1.5
+      $spacer * 1.5,
     ),
     5: (
-      $spacer * 3
+      $spacer * 3,
     ),
     "sm": (
-      $spacer * 2
+      $spacer * 2,
     ),
     "md": (
-      $spacer * 4
+      $spacer * 4,
     ),
     "lg": (
-      $spacer * 6
+      $spacer * 6,
     ),
     "xl": (
-      $spacer * 8
-    )
+      $spacer * 8,
+    ),
   ),
   $spacers
 );
@@ -338,7 +338,7 @@ $sizes: map-merge(
     25: 25%,
     50: 50%,
     75: 75%,
-    100: 100%
+    100: 100%,
   ),
   $sizes
 );

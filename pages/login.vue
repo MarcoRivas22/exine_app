@@ -3,8 +3,8 @@
     <div class="col-lg-4 col-md-6 ml-auto mr-auto">
       <card class="card-login card-white">
         <template slot="header">
-          <img src="img//exine.png" alt="" />
-          <h1 class="card-title">Exine</h1>
+          <img src="img//exine.png" alt="logo de exine" />
+          <h1 class="card-title mt-3">Exine</h1>
         </template>
 
         <div>
@@ -64,8 +64,8 @@ export default {
     return {
       user: {
         email: "",
-        password: ""
-      }
+        password: "",
+      },
     };
   },
   mounted() {},
@@ -73,20 +73,20 @@ export default {
     login() {
       this.$axios
         .post("/login", this.user)
-        .then(res => {
+        .then((res) => {
           //success! - Usuario creado.
           if (res.data.status == "success") {
             this.$notify({
               type: "success",
               icon: "tim-icons icon-check-2",
-              message: "Success! Welcome " + res.data.userData.name
+              message: "Success! Welcome " + res.data.userData.name,
             });
 
             console.log(res.data);
 
             const auth = {
               token: res.data.token,
-              userData: res.data.userData
+              userData: res.data.userData,
             };
 
             //token to de store - token a la tienda
@@ -100,14 +100,14 @@ export default {
             return;
           }
         })
-        .catch(e => {
+        .catch((e) => {
           console.log(e.response.data);
 
           if (e.response.data.error.errors.email.kind == "unique") {
             this.$notify({
               type: "danger",
               icon: "tim-icons icon-alert-circle-exc",
-              message: "User already exists :("
+              message: "User already exists :(",
             });
 
             return;
@@ -115,14 +115,14 @@ export default {
             this.$notify({
               type: "danger",
               icon: "tim-icons icon-alert-circle-exc",
-              message: "Error creating user..."
+              message: "Error creating user...",
             });
 
             return;
           }
         });
-    }
-  }
+    },
+  },
 };
 </script>
 
