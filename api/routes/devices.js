@@ -272,7 +272,7 @@ async function getSaverRules(userId) {
 //create saver rule
 async function createSaverRule(userId, dId, status) {
   try {
-    const url = "http://" + process.env.EMQX_NODE_HOST + ":8085/api/v4/rules";
+    const url = "http://" + process.env.EMQX_API_HOST + ":8085/api/v4/rules";
 
     const topic = userId + "/" + dId + "/+/sdata";
 
@@ -324,7 +324,7 @@ async function updateSaverRuleStatus(emqxRuleId, status) {
   try {
     const url =
       "http://" +
-      process.env.EMQX_NODE_HOST +
+      process.env.EMQX_API_HOST +
       ":8085/api/v4/rules/" +
       emqxRuleId;
 
@@ -353,7 +353,7 @@ async function deleteSaverRule(dId) {
 
     const url =
       "http://" +
-      process.env.EMQX_NODE_HOST +
+      process.env.EMQX_API_HOST +
       ":8085/api/v4/rules/" +
       mongoRule.emqxRuleId;
 
@@ -378,7 +378,7 @@ async function deleteAllAlarmRules(userId, dId) {
       asyncForEach(rules, async (rule) => {
         const url =
           "http://" +
-          process.env.EMQX_NODE_HOST +
+          process.env.EMQX_API_HOST +
           ":8085/api/v4/rules/" +
           rule.emqxRuleId;
         const res = await axios.delete(url, auth);
